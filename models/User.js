@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: String
     },
+    medicalHistory: {
+        type: String
+    },
     appointments: [
         {
             doctor: {
