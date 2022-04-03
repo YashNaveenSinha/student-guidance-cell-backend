@@ -1,7 +1,7 @@
 {
-  "name": "doctor_connector",
+  "name": "student-guidance-cell-backend",
   "version": "1.0.0",
-  "description": "By Jeevan Jyoti Dash",
+  "description": "By Team14SELab",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
