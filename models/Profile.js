@@ -48,12 +48,14 @@ const ProfileSchema = new mongoose.Schema({
         fathername: {
           type: String,
         },
+        slot: {
+          type: String,
+        },
         status: {
             type: String,
         },
         age: {
             type: Number,
-
         },
         date: {
           type: Date,

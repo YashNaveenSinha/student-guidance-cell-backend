@@ -38,26 +38,26 @@ router.post('/:doctor_id', [authUser,
         const doctor = await Doctor.findById(req.params.doctor_id).select('-password');
         const profile = await Profile.findOne({ doctor: req.params.doctor_id });
 
-        // Create booking id 
+        // Create booking id
         function appointmentGenerator() {
-	 
+
             this.length = 8;
             this.timestamp = +new Date;
-            
+
             var _getRandomInt = function( min, max ) {
                return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
             }
-            
+
             this.generate = function() {
                 var ts = this.timestamp.toString();
                 var parts = ts.split( "" ).reverse();
                 var id = "";
-                
+
                 for( var i = 0; i < this.length; ++i ) {
                    var index = _getRandomInt( 0, parts.length - 1 );
-                   id += parts[index];	 
+                   id += parts[index];
                 }
-                
+
                 return id;
             }
         }
@@ -71,19 +71,21 @@ router.post('/:doctor_id', [authUser,
             fathername: req.body.fathername,
             status: req.body.status,
             age: req.body.age,
+            slot: req.body.slot,
             date: req.body.date,
             description: req.body.description,
             avatar: user.avatar,
             name: user.name,
             user: req.user.id
         }
-        
+
         const newAppointment = {
             bookingId: appointmentId,
             patientname: req.body.patientname,
             fathername: req.body.fathername,
             status: req.body.status,
             age: req.body.age,
+            slot: req.body.slot,
             date: req.body.date,
             description: req.body.description,
             avatar: doctor.avatar,
@@ -111,20 +113,20 @@ router.post('/:doctor_id', [authUser,
 // router.delete('/:appointment_id', authUser, async (req, res) => {
 //     try {
 //         const user = await User.findById(req.user.id).select('-password');
-        
+
 //         const doctorId = user.appointments
 //             .map(item => {
 //                 if(item.id === req.params.appointment_id) {
 //                     return item.doctor;
 //                 }
-//             })        
+//             })
 //         const profile = await Profile.findOne({ doctor: doctorId[0]});
-        
+
 //         // Get the remove index for user
 //         const removeIndexUser = user.appointments
 //             .map(item => item.id)
 //             .indexOf(req.params.appointment_id);
-          
+
 //         user.appointments.splice(removeIndexUser, 1);
 //         await user.save();
 
@@ -132,14 +134,14 @@ router.post('/:doctor_id', [authUser,
 //         const removeIndexDoctor = profile.patients
 //         .map(item => item.id)
 //         .indexOf(req.params.appointment_id);
-        
+
 //         profile.patients.splice(removeIndexDoctor, 1);
 //         await profile.save();
 
 //         // Return user
 //         res.json(user);
 //     } catch (err) {
-        
+
 //     }
 // });
 

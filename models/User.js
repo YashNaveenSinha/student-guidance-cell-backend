@@ -37,6 +37,9 @@ const UserSchema = new mongoose.Schema({
             status: {
                 type: String,
             },
+            slot: {
+                type: String,
+            },
             age: {
                 type: Number,
             },
